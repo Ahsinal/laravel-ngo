@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900;1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.cdnfonts.com/css/icomoon");
+@import "abstracts/variables";
+@import "frameworks/cbootstrap";
+@import "frameworks/overrides";
+@import "frameworks/storybook";
+@import "abstracts/icons.scss";
+@import "abstracts/mixins";
+@import "abstracts/position";
+
+@import "base/base";
+@import "base/animations";
+@import "base/typography";
+@import "base/utilities";
+@import "base/shape";
+
+@import "layouts/header";
+@import "layouts/sidebar";
+@import "layouts/section";
+@import "layouts/footer";
+
+@import "components/slider";
+@import "components/flex";
+@import "components/card";
+@import "components/list";
+@import "components/buttons";
+@import "components/badge";
+@import "components/table";
+@import "components/form-element";
+@import "components/form";
+@import "components/tags";
+@import "components/alert";
+@import "components/image";
+@import "components/breadcrumb";
+@import "components/emptyStates";
+@import "components/note";
+@import "components/tab";
+@import "components/dropdown";
+@import "components/loader";
+
+.background {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  visibility: hidden;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.open .background {
+  visibility: visible;
+  opacity: 1;
+}
+
+@keyframes modal-in {
+
+  0%,
+  50% {
+    width: 550px;
+    border-radius: 50%;
+  }
+
+  55%,
+  100% {
+    right: 50%;
+  }
+
+  60% {
+    width: 550px;
+    border-radius: 12px;
+  }
+
+  75% {
+    translate: 50% -50%;
+  }
+}
+
+.page-content,
+.modal,
+.background {
+  transition: 0.5s;
+}
+
+.modal {
+  z-index: 99999;
+  position: fixed;
+  top: 50%;
+  right: -300px;
+  translate: 50% -50%;
+  background: $white;
+  width: 550px;
+  min-height: 550px;
+
+  border-radius: 12px;
+  color: $primary;
+
+  @media (max-width: 581px) {
+    width: 100%;
+  }
+
+  label {
+    color: $primary;
+    font-weight: 700;
+  }
+
+  select {
+    font-size: 1rem;
+  }
+
+  .btn {
+    border: 0;
+  }
+
+  .modal-content {
+    position: relative;
+    padding: 16px 24px;
+
+    .cross {
+      position: absolute;
+      cursor: pointer;
+      top: -15px;
+      right: -15px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: $secondary;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media (max-width: 581px) {
+        right: 10px;
+        top: 16px;
+      }
+
+      svg {
+        color: $white;
+        font-size: 1.5rem;
+        font-weight: 900;
+      }
+    }
+  }
+}
+
+@keyframes modal-content-in {
+
+  0%,
+  75% {
+    opacity: 0;
+  }
+
+  85%,
+  100% {
+    opacity: 1;
+  }
+}
+
+.open .modal-content {
+  animation: modal-content-in 1s both;
+}
+
+.open>.page-content {
+  scale: 0.75;
+}
+
+.open .modal {
+  animation: modal-in 1s both;
+}
+
+.sidebar-item {
+  padding: 0.75em 1em;
+  display: block;
+  transition: background-color 0.15s;
+  border-radius: 5px;
+}
+
+.sidebar-title {
+  display: flex;
+  font-size: 1rem;
+  justify-content: space-between;
+}
+
+.sidebar-title .toggle-btn {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.sidebar-content {
+  padding-top: 0.25em;
+  height: 0;
+  overflow: hidden;
+}
+
+.sidebar-item.open>.sidebar-content {
+  height: auto;
+}
+
+.sidebar-item.plain {
+  // color: #fff;
+  text-decoration: none;
+}
+
+.accordion-button {
+  h6 {
+    white-space: initial;
+  }
+}
+
+.accordion-body {
+  word-wrap: break-word !important;
+
+  p,
+  li {
+    word-wrap: break-word;
+  }
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.ant-modal-content {
+  padding: 5px !important;
+  background: $primary !important;
+  position: relative;
+
+  .ant-modal-title {
+    font-size: 1.125rem;
+  }
+
+  button {
+    svg {
+      color: $primary;
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+  }
+
+  .close {
+    position: absolute;
+    cursor: pointer;
+    top: -15px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: $secondary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 581px) {
+      right: 10px;
+      top: 16px;
+    }
+
+    svg {
+      color: $white;
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
+  }
+}
+
+.popup {
+  position: relative;
+}
